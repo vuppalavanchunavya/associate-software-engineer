@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width intial-scale=1.0"/>
+        <link rel="stylesheet" href="surveyform.css">
+        <title>Customer survey form</title>
+    </head>
+    <body>
+        <h1>Customer Survey Form</h1>
+        <form id="surveyForm">
+            <label>Firstname:</label>
+            <input type="text" id="firstname" required/><br/><br/>
+            <label>Lastname:</label>
+            <input type="text" id="lastname" required/><br/><br/>
+            <label>D.O.B:</label>
+            <input type="date" id="dob" required/><br/><br/>
+            <label>Country:&nbsp;&nbsp;</label>
+            <select id="country" required>
+                <option value="country">country</option>
+                <option value="USA">USA</option>
+                <option value="Uk">UK</option>
+                <option value="India">India</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Canada">Canada</option>
+            </select><br/><br/>
+            <label>Gender:</label>
+            <input type="checkbox" name="c1" id="male"/>male
+            <input type="checkbox" name="c1" id="female"/>female
+            <input type="checkbox" name="c1" id="other"/>other<br/><br/>
+            <label>Profession:</label>
+            <input type="text" id="profession" required/><br/><br/>
+            <label>Email:</label>
+            <input type="email" id="email" required/><br/><br/>
+            <label>Mobile number:</label>
+            <input type="text" id="mobile" required/><br/><br/>
+            <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+            <button type="button" id="resetBtn" onclick="resetForm()">Reset</button>
+        </form>
+        <div id="popup" style="display: none;">
+            <h2>Survey Submission Details</h2>
+            <p id="popupContent"></p>
+        </div>
+    
+        <script>
+            function submitForm() {
+                var firstName = document.getElementById("firstName").value;
+                var lastName = document.getElementById("lastName").value;
+                var dob = document.getElementById("dob").value;
+                var country = document.getElementById("country").value;
+                var gender = document.querySelectorAll('input[name="gender"]:checked');
+                var profession = document.getElementById("profession").value;
+                var email = document.getElementById("email").value;
+                var mobile = document.getElementById("mobile").value;
+    
+                var popupContent = "First Name: " + firstName + "<br>";
+                popupContent += "Last Name: " + lastName + "<br>";
+                popupContent += "Date of Birth: " + dob + "<br>";
+                popupContent += "Country: " + country + "<br>";
+                popupContent += "Gender: ";
+                for (var i = 0; i < gender.length; i++) {
+                    popupContent += gender[i].value + " ";
+                }
+                popupContent += "<br>";
+                popupContent += "Profession: " + profession + "<br>";
+                popupContent += "Email: " + email + "<br>";
+                popupContent += "Mobile Number: " + mobile;
+    
+                
+                document.getElementById("popupContent").innerHTML = popupContent;
+                document.getElementById("popup").style.display = "block";
+    
+            
+                resetForm();
+            }
+    
+            function resetForm() {
+                document.getElementById("surveyForm").reset();
+                document.getElementById("popup").style.display = "none";
+            }
+        </script>
+    </body>
+    </html>
+    
+    
+    
